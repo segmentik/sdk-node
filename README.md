@@ -2,6 +2,8 @@
 
 ---
 
+### Authentication 
+
 `POST https://api.segmentik.com/auth/token`
 
 Body:
@@ -11,8 +13,10 @@ Body:
   "secretKey": "YOU_SECRET_KEY"
 }
 ```
-Response will include a token valid for 4 hours
+Response will include a token valid for 4 hours.
 
+
+### Get Session
 
 `GET https://api.segmentik.com/session/:id`
 
