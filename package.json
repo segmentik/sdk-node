@@ -1,0 +1,27 @@
+{
+  "name": "@segmentik/sdk-node",
+  "version": "0.0.12",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/segmentik/sdk-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/segmentik/sdk-node/issues"
+  },
+  "homepage": "https://github.com/segmentik/sdk-node#readme",
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.5",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@segmentik/sdk-node": "^0.0.12",
+    "node-fetch": "^2.7.0"
+  }
+}
