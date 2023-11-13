@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: npm-sdk-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-sdk-node-
+
+      - name: Installing dependencies
+        run: npm ci --include=dev
+
+      - name: NPM version bump
+        id: npm-bump
+        run: |
+          export VERSION=$(npm version patch --no-git-tag-version | cut -c 2-)
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Build
+        run: npm run build
+
+      - name: Set GitHub user
+        run: |
+          git config --global user.name "GitHub CI"
+          git config --global user.email "github-ci@github.com"
+
+      - name: Git commit
+        run: |
+          git add package.json package-lock.json
+          git commit -m "Version bump to ${{ steps.npm-bump.outputs.VERSION }} [ci skip]"
+
+      - name: Git tag
+        run: git tag ${{ steps.npm-bump.outputs.VERSION }}
+
+      - name: Git push
+        run: git push origin main --tags
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: NPM publish
+        run: npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
