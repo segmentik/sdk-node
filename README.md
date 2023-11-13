@@ -30,50 +30,53 @@ const result = await client.getDetectionResult(detectionId);
 `detectionId`: string
 
 #### Returns
-A full detection result
+A full detection result:
 ```json
 {
-  time: '2023-11-13T13:55:18.149Z',
-  visitor: {
-    id: 'KUBE8O1qUhWSaOjkW3',
-    confidence: 100
+  "time": "2023-11-13T13:55:18.149Z",
+  "visitor": {
+    "id":  "KUBE8O1qUhWSaOjkW3",
+    "confidence":  100
   },
-  bot: {
-    result: 'notDetected'
+  "bot": {
+    "result": "notDetected"
   },
-  incognito: false,
-  ip: {
-    proxy: false,
-    type: 'Business',
-    country: 'US',
-    region: 'California',
-    city: 'Mountain View',
-    location: { lat: 37.422, lon: -122.084 },
-    ISP: 'Partner Communications Ltd.',
-    address: '66.249.73.12'
-  },
-  automationTool: {
-    detected: false
-  },
-  spoofing: {
-    detected: false
-  },
-  behavior: {
-    score: 0
-  },
-  duration: 0,
-  page: 'https://domain.com/page1.html',
-  sdkVersion: '0.1.6',
-  device: {
-    browser: {
-      name: 'Chrome',
-      version: '119.0.0.0'
+  "incognito": false,
+  "ip": {
+    "proxy": false,
+    "type": "Business",
+    "country": "US",
+    "region": "California",
+    "city": "Mountain View",
+    "location": {
+      "lat": 37.422,
+      "lon": -122.084
     },
-    os: {
-      name: 'Mac OS',
-      version: '10.15.7'
+    "ISP": "Partner Communications Ltd.",
+    "address": "66.249.73.12"
+  },
+  "automationTool": {
+    "detected": false
+  },
+  "spoofing": {
+    "detected": false
+  },
+  "behavior": {
+    "score": 0
+  },
+  "duration": 0,
+  "page": "https://domain.com/page1.html",
+  "sdkVersion": "0.1.6",
+  "device": {
+    "browser": {
+      "name": "Chrome",
+      "version": "119.0.0.0"
     },
-    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+    "os": {
+      "name": "Mac OS",
+      "version": "10.15.7"
+    },
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
   }
 }
 ```
