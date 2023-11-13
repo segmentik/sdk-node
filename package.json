@@ -1,6 +1,6 @@
 {
   "name": "@segmentik/sdk-node",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Segmentik SDK for Node.js",
   "main": "lib/index.js",
   "scripts": {
