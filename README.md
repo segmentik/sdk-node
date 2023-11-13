@@ -1,6 +1,4 @@
 # Segmentik SDK for Node.js
-
----
 This library is for backend use only. Make sure you have a `secretKey`:
 1. [Register](https://dashboard.segmentik.com) and login to the dashboard
 2. Navigate on the sidebar to "Secret Keys"
