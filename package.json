@@ -1,7 +1,7 @@
 {
   "name": "@segmentik/sdk-node",
-  "version": "0.0.12",
-  "description": "",
+  "version": "0.0.13",
+  "description": "Segmentik SDK for Node.js",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/segmentik/sdk-node.git"
   },
-  "author": "",
+  "author": "Segmentik",
+  "files": [
+    "lib",
+    "README.md"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/segmentik/sdk-node/issues"
@@ -21,7 +25,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@segmentik/sdk-node": "^0.0.12",
     "node-fetch": "^2.7.0"
   }
 }

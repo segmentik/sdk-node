@@ -1,48 +1,28 @@
 import fetch from 'node-fetch';
 import { ISession } from './session.interface';
-
-const API_ENDPOINT = 'https://api.segmentik.com';
+import { Errors } from './errors';
+import { API_ENDPOINT } from './endpoint';
 
 export class SegmentikNodeSDK {
 
-	token: string | null = null;
-	secretKey: string;
+	private secretKey: string;
 
-	constructor(secretKey: string) {
-		this.secretKey = secretKey;
+	constructor(config: { secretKey: string }) {
+		this.secretKey = config.secretKey;
 	}
 
-	async getSession(sessionId: string): Promise<ISession> {
-		if (!this.token) {
-			this.token = await authenticate(this.secretKey);
-		}
-		const response = await fetch(API_ENDPOINT + '/session/' + sessionId, {
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: this.token
+	async getDetectionResult(detectionId: string): Promise<ISession> {
+		const response = await fetch(
+			API_ENDPOINT + `/detection/${detectionId}?secretKey=${this.secretKey}`,
+			{
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			}
-		});
+		);
 		if (response.status === 401) {
-			this.token = await authenticate(this.secretKey);
-			return this.getSession(sessionId);
+			throw Errors.Unauthorized();
 		}
 		return response.json();
 	}
 }
-
-async function authenticate(secretKey: string): Promise<string> {
-	const response = await fetch(API_ENDPOINT + '/auth/token', {
-		method: 'post',
-		body: JSON.stringify({
-			secretKey: secretKey
-		})
-	});
-	const body = await response.text();
-	if (response.status !== 200) {
-		throw new Error(body);
-	}
-	return body;
-}
-
-// const client = new SegmentikNodeSDK('Secret');
-// await client.getSession('session');

@@ -1,4 +1,3 @@
-import { ITag } from './tag.interface';
 import { EIpType } from './ip-type.enum';
 
 export interface ISession {
@@ -8,7 +7,7 @@ export interface ISession {
 		id: string,
 		confidence: number
 	};
-	tags: ITag[];
+	tags: { [key: string]: any } | null;
 	time: Date;
 
 	duration: number;
@@ -20,8 +19,14 @@ export interface ISession {
 			proxy: boolean,
 			type: EIpType,
 			country: string,
+			city: string,
 			region: string,
-			address: string
+			address: string,
+			ISP: string,
+			location: {
+				lat: number,
+				lon: number
+			}
 		},
 		automationTools: {
 			detected: boolean;
